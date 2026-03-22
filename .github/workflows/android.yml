@@ -4,16 +4,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1
         id: buildozer
         with:
           buildozer_version: master
           command: buildozer android debug
+          repository_display_name: AirHockeyStark
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: package
-          path: ./*.apk
+          name: AirHockey_Build
+          path: bin/*.apk
 
