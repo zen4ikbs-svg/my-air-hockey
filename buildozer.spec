@@ -8,7 +8,7 @@ version = 1.0
 requirements = python3,pygame
 orientation = portrait
 fullscreen = 1
-android.archs = arm64-v8a, armeabi-v7a
+android.archs = arm64-v8a
 android.allow_backup = True
 [buildozer]
 log_level = 2
