@@ -7,8 +7,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Build with Buildozer
-        uses: kivy/buildozer-action@master
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          workdir: .
-          buildozer_version: master
+          python-version: '3.9'
+
+      - name: Install Buildozer and Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y git zip unzip openjdk-17-jdk python3-pip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libncursesw5-dev libtinfo5 cmake libffi-dev libssl-dev
+          pip3 install --user --upgrade Cython==0.29.33 buildozer
+
+      - name: Build APK
+        run: |
+          export PATH=$PATH:$HOME/.local/bin
+          buildozer android debug
