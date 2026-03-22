@@ -15,4 +15,3 @@ jobs:
         with:
           name: AirHockey_Game
           path: bin/*.apk
-concurrency: 
