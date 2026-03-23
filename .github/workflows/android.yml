@@ -22,5 +22,5 @@ jobs:
       - name: Build with Buildozer
         run: |
           export PATH=$PATH:$HOME/.local/bin
-          # Уменьшаем нагрузку на лог, чтобы не было Broken Pipe
-          yes | buildozer android debug
+          # Мы убираем лишний текст, чтобы сервер не падал от перегрузки логов
+          yes | buildozer android debug > build.log 2>&1 || (tail -n 100 build.log && exit 1)
